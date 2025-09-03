@@ -35,6 +35,4 @@ python manage.py runserver
 Then you can open the project in browser at:
 http://127.0.0.1:8000/
 
-3️⃣ Where demo/live link is (if any)
 
-This part is
