@@ -1,0 +1,30 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2>Jobs</h2>
+<form class="row g-2 mb-3" method="get">
+  <div class="col-md-3"><input class="form-control" name="q" placeholder="Keyword" value="{{ q }}"></div>
+  <div class="col-md-3"><input class="form-control" name="location" placeholder="Location" value="{{ location }}"></div>
+  <div class="col-md-2"><input class="form-control" name="company" placeholder="Company" value="{{ company }}"></div>
+  <div class="col-md-2">
+    <select class="form-select" name="category">
+      <option value="">All Categories</option>
+      {% for code,label in job.CATEGORY_CHOICES %}{% endfor %}
+    </select>
+  </div>
+  <div class="col-md-2"><button class="btn btn-primary w-100">Filter</button></div>
+</form>
+
+{% for job in jobs %}
+  <div class="card mb-2">
+    <div class="card-body d-flex justify-content-between align-items-center">
+      <div>
+        <h5 class="mb-1">{{ job.title }} – {{ job.company_name }}</h5>
+        <small>{{ job.location }} • {{ job.category }} • {{ job.created_at|date:"M d, Y" }}</small>
+      </div>
+      <a href="{% url 'jobs:job_detail' job.pk %}" class="btn btn-outline-primary">View</a>
+    </div>
+  </div>
+{% empty %}
+  <p>No jobs found.</p>
+{% endfor %}
+{% endblock %}

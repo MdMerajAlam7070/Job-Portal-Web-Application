@@ -1,0 +1,27 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<div class="p-5 mb-4 bg-light rounded-3">
+  <div class="container py-5">
+    <h1 class="display-5 fw-bold">Find your next job</h1>
+    <p class="col-md-8 fs-4">Browse fresh listings or post a job if you're an employer.</p>
+    <a class="btn btn-primary btn-lg" href="{% url 'jobs:job_list' %}">Browse Jobs</a>
+  </div>
+</div>
+
+<h3>Latest Jobs</h3>
+<div class="row">
+  {% for job in latest_jobs %}
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title">{{ job.title }}</h5>
+          <p class="card-text">{{ job.company_name }} – {{ job.location }}</p>
+          <a href="{% url 'jobs:job_detail' job.pk %}" class="btn btn-outline-primary">View</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>No jobs yet.</p>
+  {% endfor %}
+</div>
+{% endblock %}

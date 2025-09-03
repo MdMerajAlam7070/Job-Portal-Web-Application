@@ -1,0 +1,8 @@
+{% extends 'jobs/base.html' %}
+{% block content %}
+<h2>{% if edit_mode %}Edit Job{% else %}Post a Job{% endif %}</h2>
+<form method="post">{% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary">{% if edit_mode %}Save Changes{% else %}Post Job{% endif %}</button>
+</form>
+{% endblock %}
